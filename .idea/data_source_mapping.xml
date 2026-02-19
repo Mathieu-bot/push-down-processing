@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="DataSourcePerFileMappings">
-    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/aaf60625-cee1-4f25-b974-631481ba00ed/console.sql" value="aaf60625-cee1-4f25-b974-631481ba00ed" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/sql/V1_create_database_and_invoice_table.sql" value="aaf60625-cee1-4f25-b974-631481ba00ed" />
-  </component>
-</project>
