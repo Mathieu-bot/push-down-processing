@@ -119,7 +119,12 @@ public class DataRetriever {
                 CASE
                     WHEN i.status = 'PAID' THEN 1
                     WHEN i.status = 'CONFIRMED' THEN 0.5
-                    ELSE 0
+                    ELSE 
+                        CASE 
+                            WHEN i.status = 'DRAFT' 
+                            THEN il.quantity * il.unit_price * 0 
+                            ELSE 0 
+                        END
                 END
             ) AS weighted_turnover
             FROM invoice i
@@ -144,7 +149,7 @@ public class DataRetriever {
     // Q5-A
     public List<InvoiceTaxSummary> findInvoiceTaxSummaries() {
         String sql = """
-            SELECT 
+            SELECT\s
                 i.id,
                 SUM(il.quantity * il.unit_price) AS total_ht,
                 SUM(il.quantity * il.unit_price) * (t.rate / 100) AS total_tva,
@@ -154,7 +159,7 @@ public class DataRetriever {
             CROSS JOIN tax_config t
             GROUP BY i.id, t.rate
             ORDER BY i.id
-        """;
+       \s""";
 
         List<InvoiceTaxSummary> results = new ArrayList<>();
         try (Connection conn = dbConnection.getDBConnection();
